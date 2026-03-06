@@ -1,297 +1,128 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPOTLIGHT — Daily Pop Culture Trivia</title>
-    <meta name="description" content="Test your pop culture knowledge with SPOTLIGHT — a fresh daily trivia quiz covering movies, TV, music, and celebrities.">
-    <meta property="og:title" content="SPOTLIGHT — Daily Pop Culture Trivia">
-    <meta property="og:description" content="5 new questions every day. How well do you know pop culture?">
+    <title>SPOTLIGHT — Daily Pop Culture Games</title>
+    <meta name="description" content="SPOTLIGHT — daily pop culture games covering movies, TV, music, and celebrities. A new challenge every day.">
+    <meta property="og:title" content="SPOTLIGHT — Daily Pop Culture Games">
+    <meta property="og:description" content="Daily pop culture games. New challenges every day.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/base.css">
 
     <style>
         /* ============================================================
-           DESIGN SYSTEM — Hollywood Awards Night
+           HUB PAGE — Game picker styles
         ============================================================ */
-        :root {
-            --bg:         #07080F;
-            --surface:    #0D0F1E;
-            --surface-2:  #131629;
-            --border:     rgba(240,180,41,0.14);
-            --border-dim: rgba(255,255,255,0.06);
-            --gold:       #F0B429;
-            --gold-light: #FFD166;
-            --gold-glow:  rgba(240,180,41,0.18);
-            --cream:      #F0E8D5;
-            --muted:      #5E5E78;
-            --muted-mid:  #8787A0;
-            --correct:    #06D6A0;
-            --correct-bg: rgba(6,214,160,0.09);
-            --wrong:      #EF4565;
-            --wrong-bg:   rgba(239,69,101,0.09);
-            --cat-movie:  #F0B429;
-            --cat-tv:     #A78BFA;
-            --cat-music:  #34D399;
-            --cat-celeb:  #F472B6;
-            --cat-pop:    #60A5FA;
-        }
-
-        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            background: var(--bg);
-            color: var(--cream);
-            font-family: 'DM Sans', system-ui, sans-serif;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Ambient star field */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background-image:
-                radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.28) 0%, transparent 100%),
-                radial-gradient(1px 1px at 85% 8%,  rgba(255,255,255,.18) 0%, transparent 100%),
-                radial-gradient(1px 1px at 55% 62%, rgba(255,255,255,.14) 0%, transparent 100%),
-                radial-gradient(2px 2px at 38% 82%, rgba(240,180,41,.12) 0%, transparent 100%),
-                radial-gradient(1px 1px at 92% 47%, rgba(255,255,255,.18) 0%, transparent 100%),
-                radial-gradient(1px 1px at 7%  73%, rgba(255,255,255,.12) 0%, transparent 100%),
-                radial-gradient(1px 1px at 68% 22%, rgba(255,255,255,.10) 0%, transparent 100%),
-                radial-gradient(2px 2px at 29% 44%, rgba(240,180,41,.09) 0%, transparent 100%),
-                radial-gradient(1px 1px at 47% 5%,  rgba(255,255,255,.20) 0%, transparent 100%),
-                radial-gradient(1px 1px at 75% 90%, rgba(167,139,250,.10) 0%, transparent 100%);
-            z-index: 0;
-        }
-
-        /* Spotlight glow from top */
-        body::after {
-            content: '';
-            position: fixed;
-            top: -280px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(ellipse at center, rgba(240,180,41,.055) 0%, transparent 68%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* ============================================================
-           LAYOUT
-        ============================================================ */
-        .wrap {
-            width: 100%;
-            max-width: 660px;
-            padding: 0 18px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* ============================================================
-           AD UNITS
-           Replace .ad-placeholder divs with your Google AdSense tags
-        ============================================================ */
-        .ad-zone {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            position: relative;
-            z-index: 1;
-        }
-        .ad-zone-top    { padding: 14px 18px 0; }
-        .ad-zone-bottom { padding: 6px 18px 28px; }
-
-        .ad-placeholder {
-            background: var(--surface);
-            border: 1px dashed rgba(255,255,255,.07);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--muted);
-            font-size: 10px;
-            letter-spacing: .08em;
-            text-transform: uppercase;
-        }
-        .ad-leaderboard { width:100%; max-width:728px; height:90px; }
-        .ad-rect        { width:300px; height:250px; }
-
-        /* ============================================================
-           HEADER
-        ============================================================ */
-        .site-header {
-            padding: 22px 0 0;
+        .hub-hero {
+            padding: 40px 0 10px;
             text-align: center;
         }
-        .logo {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: .38em;
+        .hub-eyebrow {
+            font-size: 11px;
+            letter-spacing: .22em;
             text-transform: uppercase;
             color: var(--gold);
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
+            margin-bottom: 14px;
         }
-        .logo-dot { font-size: 8px; }
-        .header-date {
-            font-size: 11px;
+        .hub-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(48px, 10vw, 78px);
+            font-weight: 900;
+            line-height: .95;
+            color: var(--cream);
+            letter-spacing: -.01em;
+        }
+        .hub-title em { color: var(--gold); font-style: normal; }
+        .hub-tagline {
+            font-size: 14px;
             color: var(--muted-mid);
-            letter-spacing: .10em;
+            margin-top: 12px;
+            letter-spacing: .04em;
+        }
+        .hub-section-label {
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: .22em;
             text-transform: uppercase;
-            margin-top: 5px;
+            color: var(--muted);
+            margin: 40px 0 16px;
         }
-
-        /* ============================================================
-           SCREENS
-        ============================================================ */
-        .screen { display: none; }
-        .screen.active {
-            display: block;
-            animation: screenIn .38s cubic-bezier(.22,1,.36,1);
+        .game-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 48px;
         }
-        @keyframes screenIn {
-            from { opacity:0; transform:translateY(10px); }
-            to   { opacity:1; transform:translateY(0); }
-        }
-
-        /* ============================================================
-           CARD BASE
-        ============================================================ */
-        .card {
+        .game-card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: 22px;
+            padding: 30px 28px 26px;
             position: relative;
             overflow: hidden;
+            display: flex;
+            gap: 22px;
+            align-items: flex-start;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color .18s, transform .18s;
         }
-        .card::before {
+        .game-card::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0;
             height: 2px;
             background: linear-gradient(90deg, transparent, var(--gold) 50%, transparent);
         }
-
-        /* ============================================================
-           SPLASH SCREEN
-        ============================================================ */
-        .splash-card {
-            margin: 28px 0;
-            padding: 52px 44px 44px;
-            text-align: center;
+        .game-card:hover {
+            border-color: rgba(240,180,41,.40);
+            transform: translateY(-2px);
         }
-        .splash-eyebrow {
-            font-size: 11px;
-            letter-spacing: .22em;
-            text-transform: uppercase;
-            color: var(--gold);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .splash-title {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(54px, 11vw, 86px);
-            font-weight: 900;
-            line-height: .95;
-            color: var(--cream);
-            letter-spacing: -.01em;
-        }
-        .splash-title em {
-            color: var(--gold);
-            font-style: normal;
-        }
-        .splash-tagline {
-            font-size: 14px;
-            color: var(--muted-mid);
-            margin-top: 12px;
-            letter-spacing: .04em;
-        }
-        .rule {
-            width: 36px;
-            height: 2px;
-            background: var(--gold);
-            margin: 24px auto;
-            border-radius: 2px;
-        }
-        .splash-stats {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 36px;
-        }
-        .sstat-val {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 30px;
-            font-weight: 700;
-            color: var(--gold);
+        .game-card-icon {
+            font-size: 36px;
+            flex-shrink: 0;
             line-height: 1;
         }
-        .sstat-lbl {
-            font-size: 10px;
-            color: var(--muted-mid);
-            letter-spacing: .1em;
-            text-transform: uppercase;
-            margin-top: 4px;
-        }
-        .vr {
-            width: 1px;
-            height: 44px;
-            background: var(--border);
-        }
-        .btn-play {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--gold);
-            color: #07080F;
-            font-family: 'DM Sans', system-ui, sans-serif;
+        .game-card-body { flex: 1; }
+        .game-card-badge {
+            display: inline-block;
+            font-size: 9px;
             font-weight: 600;
-            font-size: 14px;
-            letter-spacing: .06em;
+            letter-spacing: .14em;
             text-transform: uppercase;
-            padding: 17px 44px;
-            border: none;
+            color: var(--gold);
+            background: rgba(240,180,41,.10);
+            border: 1px solid rgba(240,180,41,.22);
             border-radius: 60px;
-            cursor: pointer;
-            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+            padding: 3px 10px;
+            margin-bottom: 8px;
         }
-        .btn-play:hover {
-            background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(240,180,41,.28);
+        .game-card-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--cream);
+            margin-bottom: 6px;
         }
-        .btn-play:active { transform: translateY(0); }
-
-        .splash-cats {
+        .game-card-desc {
+            font-size: 13px;
+            color: var(--muted-mid);
+            line-height: 1.55;
+            margin-bottom: 14px;
+        }
+        .game-card-cats {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 30px;
+            gap: 6px;
+            margin-bottom: 18px;
         }
         .cpill {
-            font-size: 10px;
+            font-size: 9px;
             font-weight: 500;
             letter-spacing: .1em;
             text-transform: uppercase;
-            padding: 5px 13px;
+            padding: 4px 11px;
             border-radius: 60px;
             border: 1px solid;
         }
@@ -300,335 +131,79 @@
         .cpill.music   { color: var(--cat-music); border-color: rgba(52,211,153,.28);  background: rgba(52,211,153,.06); }
         .cpill.celeb   { color: var(--cat-celeb); border-color: rgba(244,114,182,.28); background: rgba(244,114,182,.06); }
         .cpill.pop     { color: var(--cat-pop);   border-color: rgba(96,165,250,.28);  background: rgba(96,165,250,.06); }
-
-        /* ============================================================
-           GAME SCREEN
-        ============================================================ */
-        .game-meta {
-            padding: 22px 0 14px;
+        .game-card-footer {
             display: flex;
             align-items: center;
             justify-content: space-between;
-        }
-        .game-progress-lbl {
-            font-size: 11px;
-            color: var(--muted-mid);
-            letter-spacing: .10em;
-            text-transform: uppercase;
-        }
-        .game-progress-lbl strong { color: var(--cream); font-weight: 600; }
-        .game-score-lbl {
-            font-size: 11px;
-            color: var(--muted-mid);
-            letter-spacing: .06em;
-        }
-        .game-score-lbl span { color: var(--gold); font-weight: 600; }
-
-        .pbar-track {
-            width: 100%;
-            height: 3px;
-            background: var(--surface-2);
-            border-radius: 3px;
-            margin-bottom: 22px;
-            overflow: hidden;
-        }
-        .pbar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light));
-            border-radius: 3px;
-            transition: width .45s cubic-bezier(.22,1,.36,1);
-        }
-
-        .q-card {
-            padding: 32px 32px 28px;
-            margin-bottom: 14px;
-        }
-        .q-cat {
-            font-size: 10px;
-            font-weight: 600;
-            letter-spacing: .16em;
-            text-transform: uppercase;
-            margin-bottom: 14px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .q-text {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(17px, 3.2vw, 21px);
-            font-weight: 700;
-            line-height: 1.42;
-            color: var(--cream);
-        }
-
-        .opts {
-            display: grid;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-        .opt {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            background: var(--surface);
-            border: 1px solid var(--border-dim);
-            border-radius: 13px;
-            padding: 15px 18px;
-            cursor: pointer;
-            text-align: left;
-            width: 100%;
-            color: var(--cream);
-            font-family: 'DM Sans', system-ui, sans-serif;
-            font-size: 14.5px;
-            line-height: 1.4;
-            transition: border-color .16s, background .16s, transform .16s;
-        }
-        .opt:not(.locked):hover {
-            border-color: rgba(240,180,41,.38);
-            background: var(--gold-glow);
-            transform: translateX(5px);
-        }
-        .opt-letter {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            border: 1.5px solid rgba(255,255,255,.14);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
-            flex-shrink: 0;
-            transition: background .2s, border-color .2s, color .2s;
-        }
-        .opt-text { flex: 1; }
-
-        .opt.is-correct {
-            background: var(--correct-bg);
-            border-color: var(--correct);
-        }
-        .opt.is-correct .opt-letter {
-            background: var(--correct);
-            border-color: var(--correct);
-            color: #07080F;
-        }
-        .opt.is-wrong {
-            background: var(--wrong-bg);
-            border-color: var(--wrong);
-        }
-        .opt.is-wrong .opt-letter {
-            background: var(--wrong);
-            border-color: var(--wrong);
-            color: #fff;
-        }
-        .opt.locked           { cursor: default; }
-        .opt.locked.is-dim    { opacity: .38; }
-
-        .feedback {
-            border-radius: 11px;
-            padding: 13px 18px;
-            font-size: 13.5px;
-            font-weight: 500;
-            text-align: center;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: opacity .25s, max-height .25s;
-        }
-        .feedback.show {
-            opacity: 1;
-            max-height: 80px;
-        }
-        .feedback.correct { background: var(--correct-bg); color: var(--correct); }
-        .feedback.wrong   { background: var(--wrong-bg);   color: var(--wrong); }
-
-        .btn-next {
-            display: block;
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 13px;
-            color: var(--cream);
-            font-family: 'DM Sans', system-ui, sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: .04em;
-            padding: 15px;
-            cursor: pointer;
-            margin-top: 10px;
-            opacity: 0;
-            pointer-events: none;
-            transition: border-color .18s, color .18s, opacity .25s;
-        }
-        .btn-next.show {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .btn-next:hover { border-color: var(--gold); color: var(--gold); }
-
-        /* ============================================================
-           RESULTS SCREEN
-        ============================================================ */
-        .results-card {
-            margin: 28px 0 14px;
-            padding: 48px 40px 40px;
-            text-align: center;
-        }
-        .results-eyebrow {
-            font-size: 10px;
-            letter-spacing: .20em;
-            text-transform: uppercase;
-            color: var(--muted-mid);
-            margin-bottom: 10px;
-        }
-        .results-score {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(64px, 14vw, 96px);
-            font-weight: 900;
-            color: var(--gold);
-            line-height: 1;
-        }
-        .results-of {
-            font-size: 14px;
-            color: var(--muted-mid);
-            margin-top: 3px;
-            margin-bottom: 16px;
-        }
-        .results-msg {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(17px, 3vw, 21px);
-            font-style: italic;
-            color: var(--cream);
-            margin-bottom: 22px;
-            line-height: 1.4;
-        }
-        .emoji-row {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-            font-size: 26px;
-            margin-bottom: 28px;
             flex-wrap: wrap;
+            gap: 14px;
         }
-        .results-hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 0 0 22px;
-        }
-        .r-stats {
+        .game-card-stats {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 32px;
-            margin-bottom: 28px;
+            gap: 20px;
         }
-        .rstat-val {
+        .gc-stat { text-align: left; }
+        .gc-stat-val {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 26px;
+            font-size: 18px;
             font-weight: 700;
-            color: var(--cream);
+            color: var(--gold);
         }
-        .rstat-lbl {
-            font-size: 10px;
-            color: var(--muted-mid);
+        .gc-stat-lbl {
+            font-size: 9px;
+            color: var(--muted);
             letter-spacing: .09em;
             text-transform: uppercase;
-            margin-top: 3px;
+            margin-top: 2px;
         }
-        .btn-share {
+        .gc-stat-divider {
+            width: 1px;
+            background: var(--border);
+            align-self: stretch;
+        }
+        .game-card-play {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: var(--gold);
             color: #07080F;
             font-family: 'DM Sans', system-ui, sans-serif;
             font-weight: 600;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: .06em;
             text-transform: uppercase;
-            padding: 15px 36px;
-            border: none;
+            padding: 12px 26px;
             border-radius: 60px;
-            cursor: pointer;
-            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+            text-decoration: none;
+            flex-shrink: 0;
+            transition: background .18s, box-shadow .18s;
         }
-        .btn-share:hover {
+        .game-card-play:hover {
             background: var(--gold-light);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(240,180,41,.26);
+            box-shadow: 0 6px 20px rgba(240,180,41,.26);
         }
-        .copied-msg {
-            font-size: 12px;
-            color: var(--correct);
-            margin-top: 10px;
-            min-height: 20px;
-            opacity: 0;
-            transition: opacity .25s;
-        }
-        .copied-msg.show { opacity: 1; }
-        .next-quiz-note {
-            margin-top: 16px;
-            font-size: 11px;
+        .coming-soon-card {
+            background: var(--surface);
+            border: 1px dashed rgba(255,255,255,.07);
+            border-radius: 22px;
+            padding: 28px;
+            text-align: center;
             color: var(--muted);
+            font-size: 13px;
             letter-spacing: .04em;
         }
-        .countdown { color: var(--gold); font-weight: 600; }
-
-        /* ============================================================
-           ALREADY PLAYED SCREEN
-        ============================================================ */
-        .played-card {
-            margin: 28px 0 14px;
-            padding: 52px 40px 44px;
-            text-align: center;
-        }
-        .played-icon { font-size: 52px; margin-bottom: 14px; }
-        .played-title {
+        .coming-soon-card strong {
+            display: block;
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: 28px;
+            font-size: 16px;
             font-weight: 700;
-            color: var(--cream);
-            margin-bottom: 10px;
-        }
-        .played-sub {
-            font-size: 14px;
             color: var(--muted-mid);
-            line-height: 1.6;
-            margin-bottom: 22px;
+            margin-bottom: 6px;
         }
-        .played-score-note {
-            font-size: 14px;
-            color: var(--muted-mid);
-            margin: 14px 0 22px;
-        }
-        .played-score-note strong { color: var(--gold); }
-
-        /* ============================================================
-           FOOTER
-        ============================================================ */
-        .site-footer {
-            padding: 22px 0 28px;
-            text-align: center;
-            font-size: 11px;
-            color: var(--muted);
-            letter-spacing: .05em;
-            position: relative;
-            z-index: 1;
-        }
-        .site-footer a { color: var(--muted-mid); text-decoration: none; }
-        .site-footer a:hover { color: var(--gold); }
-
-        /* ============================================================
-           RESPONSIVE
-        ============================================================ */
         @media (max-width: 500px) {
-            .splash-card   { padding: 38px 22px 36px; }
-            .results-card  { padding: 38px 22px 34px; }
-            .played-card   { padding: 42px 22px 38px; }
-            .q-card        { padding: 24px 20px 22px; }
-            .opt           { padding: 13px 16px; font-size: 14px; }
-            .splash-stats  { gap: 20px; }
-            .r-stats       { gap: 20px; }
+            .game-card        { flex-direction: column; gap: 14px; padding: 24px 20px 22px; }
+            .game-card-icon   { font-size: 30px; }
+            .game-card-footer { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -657,626 +232,84 @@
     </header>
 </div>
 
-<!-- MAIN CONTENT -->
+<!-- HUB CONTENT -->
 <div class="wrap">
 
-    <!-- ── SPLASH ── -->
-    <div class="screen active" id="scr-splash">
-        <div class="card splash-card">
-            <div class="splash-eyebrow">✦ Daily Trivia ✦</div>
-            <div class="splash-title">SPOT<em>LIGHT</em></div>
-            <p class="splash-tagline">5 questions. Every day. All pop culture.</p>
-            <div class="rule"></div>
-            <div class="splash-stats">
-                <div>
-                    <div class="sstat-val" id="splashStreak">0</div>
-                    <div class="sstat-lbl">🔥 Streak</div>
-                </div>
-                <div class="vr"></div>
-                <div>
-                    <div class="sstat-val">5</div>
-                    <div class="sstat-lbl">Questions</div>
-                </div>
-                <div class="vr"></div>
-                <div>
-                    <div class="sstat-val" id="splashBest">—</div>
-                    <div class="sstat-lbl">🏆 Best</div>
-                </div>
-            </div>
-            <button class="btn-play" onclick="startGame()">★ &nbsp;Play Today's Quiz</button>
-            <div class="splash-cats">
-                <span class="cpill movies">🎬 Movies</span>
-                <span class="cpill tv">📺 TV</span>
-                <span class="cpill music">🎵 Music</span>
-                <span class="cpill celeb">⭐ Celebrity</span>
-                <span class="cpill pop">🌟 Pop Culture</span>
-            </div>
-        </div>
+    <div class="hub-hero">
+        <p class="hub-eyebrow">✦ Daily Pop Culture Games ✦</p>
+        <div class="hub-title">SPOT<em>LIGHT</em></div>
+        <p class="hub-tagline">A new challenge every single day.</p>
     </div>
 
-    <!-- ── ALREADY PLAYED ── -->
-    <div class="screen" id="scr-played">
-        <div class="card played-card">
-            <div class="played-icon">🎬</div>
-            <div class="played-title">Already played today!</div>
-            <p class="played-sub">You've completed today's SPOTLIGHT quiz.<br>New questions drop every day at midnight.</p>
-            <div class="emoji-row" id="playedEmojis"></div>
-            <p class="played-score-note">Today's score: <strong id="playedScoreNum"></strong></p>
-            <button class="btn-share" onclick="share('played')">📋 &nbsp;Share My Score</button>
-            <p class="copied-msg" id="copiedPlayed"></p>
-            <p class="next-quiz-note">Next quiz in: <span class="countdown" id="cdPlayed"></span></p>
-        </div>
-    </div>
+    <p class="hub-section-label">Today's Games</p>
 
-    <!-- ── GAME ── -->
-    <div class="screen" id="scr-game">
-        <div class="game-meta">
-            <p class="game-progress-lbl">Question <strong id="qNum">1</strong> of 5</p>
-            <p class="game-score-lbl">Score: <span id="scoreNum">0</span></p>
-        </div>
-        <div class="pbar-track"><div class="pbar-fill" id="pbar"></div></div>
+    <div class="game-grid">
 
-        <div class="card q-card">
-            <div class="q-cat"  id="qCat"></div>
-            <div class="q-text" id="qText"></div>
-        </div>
-
-        <div class="opts" id="opts"></div>
-        <div class="feedback" id="feedback"></div>
-        <button class="btn-next" id="btnNext" onclick="advance()"></button>
-    </div>
-
-    <!-- ── RESULTS ── -->
-    <div class="screen" id="scr-results">
-        <div class="card results-card">
-            <p class="results-eyebrow">Today's Result</p>
-            <div class="results-score" id="rScore"></div>
-            <p class="results-of">out of 5 correct</p>
-            <p class="results-msg" id="rMsg"></p>
-            <div class="emoji-row" id="rEmojis"></div>
-            <hr class="results-hr">
-            <div class="r-stats">
-                <div>
-                    <div class="rstat-val" id="rStreak"></div>
-                    <div class="rstat-lbl">🔥 Streak</div>
+        <!-- Daily Trivia -->
+        <div class="game-card">
+            <div class="game-card-icon">🎬</div>
+            <div class="game-card-body">
+                <span class="game-card-badge">Daily · 5 Questions</span>
+                <div class="game-card-title">Pop Culture Trivia</div>
+                <p class="game-card-desc">One question from each category — movies, TV, music, celebrity, and pop culture. Everyone gets the same quiz today.</p>
+                <div class="game-card-cats">
+                    <span class="cpill movies">🎬 Movies</span>
+                    <span class="cpill tv">📺 TV</span>
+                    <span class="cpill music">🎵 Music</span>
+                    <span class="cpill celeb">⭐ Celebrity</span>
+                    <span class="cpill pop">🌟 Pop Culture</span>
                 </div>
-                <div class="vr"></div>
-                <div>
-                    <div class="rstat-val" id="rBest"></div>
-                    <div class="rstat-lbl">🏆 Best</div>
-                </div>
-                <div class="vr"></div>
-                <div>
-                    <div class="rstat-val" id="rPlayed"></div>
-                    <div class="rstat-lbl">📅 Played</div>
+                <div class="game-card-footer">
+                    <div class="game-card-stats" id="triviaStats">
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="triviaStreak">—</div>
+                            <div class="gc-stat-lbl">🔥 Streak</div>
+                        </div>
+                        <div class="gc-stat-divider"></div>
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="triviaBest">—</div>
+                            <div class="gc-stat-lbl">🏆 Best</div>
+                        </div>
+                    </div>
+                    <a href="trivia/" class="game-card-play">★ &nbsp;Play Now</a>
                 </div>
             </div>
-            <button class="btn-share" onclick="share('results')">📋 &nbsp;Share My Score</button>
-            <p class="copied-msg" id="copiedResults"></p>
-            <p class="next-quiz-note">New quiz tomorrow · <span class="countdown" id="cdResults"></span></p>
         </div>
+
+        <!-- Coming soon placeholder -->
+        <div class="coming-soon-card">
+            <strong>More games coming soon</strong>
+            Check back — new game modes drop regularly.
+        </div>
+
     </div>
 
 </div><!-- /wrap -->
 
-<!-- ================================================================
-     BOTTOM AD (medium rectangle 300×250) — shown after results
-================================================================ -->
-<div class="ad-zone ad-zone-bottom" id="bottomAd" style="display:none">
-    <div class="ad-placeholder ad-rect">Advertisement (300×250)</div>
-</div>
-
 <footer class="site-footer">
-    SPOTLIGHT · Daily Pop Culture Trivia · New quiz every midnight
+    SPOTLIGHT · Daily Pop Culture Games · New challenges every midnight
 </footer>
 
 <script>
 /* ================================================================
-   QUESTION BANK  (50 questions, 5 categories)
+   HUB — Load trivia stats from localStorage to show on game card
 ================================================================ */
-const BANK = [
-    /* ── MOVIES ── */
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Which 2023 blockbuster starred Margot Robbie as a plastic fashion doll?',
-      opts:['The Doll House','Mean Girls','Legally Blonde 3','Barbie'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Who directed "Oppenheimer" (2023)?',
-      opts:['Denis Villeneuve','Steven Spielberg','Quentin Tarantino','Christopher Nolan'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Which film carries the tagline "In space, no one can hear you scream"?',
-      opts:['Gravity','Interstellar','The Martian','Alien'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Who voices Woody in the Toy Story franchise?',
-      opts:['Jim Carrey','Will Smith','Tom Cruise','Tom Hanks'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Which film won the Academy Award for Best Picture at the 2020 Oscars?',
-      opts:['1917','Joker','Once Upon a Time in Hollywood','Parasite'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'What color pill does Neo choose to learn the truth in "The Matrix"?',
-      opts:['Blue','Yellow','Green','Red'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Which Disney film features the power ballad "Let It Go"?',
-      opts:['Brave','Tangled','Moana','Frozen'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Who plays Tony Stark / Iron Man in the Marvel Cinematic Universe?',
-      opts:['Chris Evans','Chris Hemsworth','Benedict Cumberbatch','Robert Downey Jr.'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'In "Catch Me If You Can," Leonardo DiCaprio plays real-life conman Frank Abagnale Jr. Who directed it?',
-      opts:['Martin Scorsese','James Cameron','David Fincher','Steven Spielberg'], ans:3 },
-
-    { cat:'movies', icon:'🎬', label:'Movies',
-      q:'Which fictional school do Harry, Ron and Hermione attend?',
-      opts:['Beauxbatons','Durmstrang','Ilvermorny','Hogwarts'], ans:3 },
-
-    /* ── TV SHOWS ── */
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'Which Netflix series is set in the fictional Indiana town of Hawkins?',
-      opts:['Dark','Mindhunter','The OA','Stranger Things'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'Who plays high-school-teacher-turned-drug-lord Walter White in "Breaking Bad"?',
-      opts:['Aaron Paul','Bob Odenkirk','Dean Norris','Bryan Cranston'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'What is the name of the coffee shop where the Friends gang hangs out?',
-      opts:['The Daily Grind','Café Du Monde','The Peach Pit','Central Perk'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'Which HBO drama follows the Roy family\'s battle over a global media empire?',
-      opts:['Industry','Suits','Billions','Succession'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'What is the very first game contestants are forced to play in "Squid Game"?',
-      opts:['Honeycomb','Marbles','Tug of War','Red Light Green Light'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'Which actress portrays Daenerys Targaryen, "Mother of Dragons," in Game of Thrones?',
-      opts:['Sophie Turner','Maisie Williams','Natalie Dormer','Emilia Clarke'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'What fictional paper company is the setting of the US version of "The Office"?',
-      opts:['Scott Paper Co.','Halpert & Sons','Wernham Hogg','Dunder Mifflin'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'Who plays the titular Wednesday Addams in Netflix\'s "Wednesday"?',
-      opts:['Sadie Sink','Joey King','Millie Bobby Brown','Jenna Ortega'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'The famous motto "Winter is Coming" belongs to which noble house in Game of Thrones?',
-      opts:['House Lannister','House Baratheon','House Targaryen','House Stark'], ans:3 },
-
-    { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'Tony Stark\'s AI butler in the Iron Man films goes by what name?',
-      opts:['HAL','ARIA','WALL-E','JARVIS'], ans:3 },
-
-    /* ── MUSIC ── */
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'Which superstar released the acclaimed dance album "Renaissance" in 2022?',
-      opts:['Rihanna','Nicki Minaj','Lizzo','Beyoncé'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'What is The Weeknd\'s real birth name?',
-      opts:['Michael Thompson','Kevin Hart','Daniel Johnson','Abel Tesfaye'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'Which legendary British rock band recorded "Bohemian Rhapsody" and "We Will Rock You"?',
-      opts:['Led Zeppelin','The Rolling Stones','The Beatles','Queen'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'In what year did Michael Jackson release his iconic "Thriller" album?',
-      opts:['1979','1985','1988','1982'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'The rapper Drake\'s legal birth name is:',
-      opts:['Kendrick Duckworth','Shéyaa Joseph','Rakim Mayers','Aubrey Graham'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'Billie Eilish won the Oscar for Best Original Song for which James Bond film?',
-      opts:['Skyfall','Spectre','Casino Royale','No Time to Die'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'Taylor Swift\'s Eras Tour became the first concert tour ever to gross more than:',
-      opts:['$500 million','$2 billion','$750 million','$1 billion'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'As of 2024, who holds the record for the most Grammy Awards won in history?',
-      opts:['Taylor Swift','Jay-Z','Georg Solti','Beyoncé'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'Which iconic artist is universally known as the "Queen of Pop"?',
-      opts:['Mariah Carey','Beyoncé','Whitney Houston','Madonna'], ans:3 },
-
-    { cat:'music', icon:'🎵', label:'Music',
-      q:'The K-pop group BTS is from which country?',
-      opts:['Japan','China','Thailand','South Korea'], ans:3 },
-
-    /* ── CELEBRITY ── */
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Which celebrity couple is nicknamed "Bennifer"?',
-      opts:['Ben Stiller & Jennifer Aniston','Ben Kingsley & Jennifer Garner','Benedict Cumberbatch & Jennifer Lawrence','Ben Affleck & Jennifer Lopez'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Who played The Joker in Christopher Nolan\'s "The Dark Knight" (2008)?',
-      opts:['Jared Leto','Jack Nicholson','Joaquin Phoenix','Heath Ledger'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Kim Kardashian was previously married to which Grammy-winning rapper?',
-      opts:['Jay-Z','Travis Scott','Snoop Dogg','Kanye West'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Zendaya won back-to-back Emmy Awards for Outstanding Lead Actress in which HBO series?',
-      opts:['Insecure','Lovecraft Country','I May Destroy You','Euphoria'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Which Chris plays Thor in the Marvel Cinematic Universe?',
-      opts:['Chris Evans','Chris Pratt','Chris Pine','Chris Hemsworth'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Lady Gaga\'s famous fan nickname for herself is:',
-      opts:['Little Monsters (she calls herself Mother Monster)','Queen of Monsters','The Haus Head','Little Gaga'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'As of 2024, who is the most-followed individual on Instagram?',
-      opts:['Taylor Swift','Kylie Jenner','Selena Gomez','Cristiano Ronaldo'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Which actress plays Natasha Romanoff / Black Widow in the MCU?',
-      opts:['Gal Gadot','Brie Larson','Zoe Saldana','Scarlett Johansson'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Which fiery celebrity chef hosts the cooking competition show "Hell\'s Kitchen"?',
-      opts:['Anthony Bourdain','Bobby Flay','Guy Fieri','Gordon Ramsay'], ans:3 },
-
-    { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Emma Stone won her first Academy Award for Best Actress for her role in:',
-      opts:['Easy A','Birdman','The Favourite','La La Land'], ans:3 },
-
-    /* ── POP CULTURE ── */
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'Which social media platform is best known for its personalized "For You Page" (FYP)?',
-      opts:['Instagram','Snapchat','Twitter / X','TikTok'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'Who was hosting the Oscars when Will Smith walked onstage and slapped him?',
-      opts:['Jimmy Fallon','Kevin Hart','Ricky Gervais','Chris Rock'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'What does the "E" in EGOT stand for?',
-      opts:['Excellence','Elite','Entertainment','Emmy'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'Which long-running reality competition show launched the careers of Kelly Clarkson and Carrie Underwood?',
-      opts:['Dancing with the Stars','Big Brother','The Voice','American Idol'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'The 2016 smash hit "Closer" was performed by which electronic duo?',
-      opts:['Twenty One Pilots','Imagine Dragons','Glass Animals','The Chainsmokers'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'Which streaming service produces the royal drama "The Crown"?',
-      opts:['HBO Max','Hulu','Amazon Prime Video','Netflix'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'The viral "Ice Bucket Challenge" raised millions in awareness for which disease?',
-      opts:["Parkinson's","Multiple Sclerosis","Alzheimer's","ALS"], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'Which fictional superhero team includes Captain America, Iron Man, and Thor?',
-      opts:['X-Men','Guardians of the Galaxy','Justice League','The Avengers'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'Which battle-royale video game became a massive global phenomenon starting in 2017?',
-      opts:['Apex Legends','PUBG','Call of Duty: Warzone','Fortnite'], ans:3 },
-
-    { cat:'pop', icon:'🌟', label:'Pop Culture',
-      q:'The "Barbenheimer" cultural moment in summer 2023 referred to the same-day release of Barbie and which film?',
-      opts:['Mission: Impossible','Indiana Jones','Asteroid City','Oppenheimer'], ans:3 },
-];
-
-/* ================================================================
-   SEEDED RANDOM — everyone sees the same 5 questions each day
-================================================================ */
-function seededRNG(seed) {
-    let s = seed >>> 0;
-    return () => {
-        s = Math.imul(1664525, s) + 1013904223 | 0;
-        return (s >>> 0) / 0x100000000;
-    };
-}
-
-function dateSeed() {
-    const d = new Date();
-    return d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
-}
-
-function getDailyQuestions() {
-    const rng = seededRNG(dateSeed());
-    const pool = [...BANK];
-    for (let i = pool.length - 1; i > 0; i--) {
-        const j = Math.floor(rng() * (i + 1));
-        [pool[i], pool[j]] = [pool[j], pool[i]];
-    }
-    // Pick one from each category to guarantee variety, then pad to 5
-    const cats = ['movies','tv','music','celeb','pop'];
-    const selected = cats.map(c => pool.find(q => q.cat === c));
-    return selected;
-}
-
-/* ================================================================
-   PERSISTENCE (localStorage)
-================================================================ */
-function todayKey() {
-    const d = new Date();
-    return `spotlight_${d.getFullYear()}_${d.getMonth()+1}_${d.getDate()}`;
-}
-
-function getStats() {
-    const raw = localStorage.getItem('spotlight_stats');
-    return raw ? JSON.parse(raw) : { streak:0, best:0, played:0, lastDate:'' };
-}
-
-function saveStats(s) { localStorage.setItem('spotlight_stats', JSON.stringify(s)); }
-
-function saveTodayResult(score, answers) {
-    localStorage.setItem(todayKey(), JSON.stringify({ score, answers }));
-}
-
-function getTodayResult() {
-    const raw = localStorage.getItem(todayKey());
-    return raw ? JSON.parse(raw) : null;
-}
-
-/* ================================================================
-   GAME STATE
-================================================================ */
-let questions    = [];
-let qIndex       = 0;
-let score        = 0;
-let answerLog    = [];        // array of booleans
-let shuffledOpts = [];        // per-question shuffled display order
-let correctDisp  = 0;         // index in shuffledOpts that is correct
-
-/* ================================================================
-   INIT
-================================================================ */
-function init() {
+(function () {
     const d = new Date();
     document.getElementById('headerDate').textContent =
         d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
 
-    const stats = getStats();
-    document.getElementById('splashStreak').textContent = stats.streak;
-    document.getElementById('splashBest').textContent   = stats.best ? `${stats.best}/5` : '—';
-
-    const result = getTodayResult();
-    if (result) {
-        showPlayedScreen(result);
-    }
-
-    tickCountdown();
-    setInterval(tickCountdown, 1000);
-}
-
-function showScreen(id) {
-    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-}
-
-/* ================================================================
-   SPLASH → GAME
-================================================================ */
-function startGame() {
-    questions  = getDailyQuestions();
-    qIndex     = 0;
-    score      = 0;
-    answerLog  = [];
-    showScreen('scr-game');
-    renderQuestion();
-}
-
-/* ================================================================
-   RENDER QUESTION
-================================================================ */
-const CAT_COLORS = { movies:'#F0B429', tv:'#A78BFA', music:'#34D399', celeb:'#F472B6', pop:'#60A5FA' };
-
-function renderQuestion() {
-    const q = questions[qIndex];
-
-    document.getElementById('qNum').textContent    = qIndex + 1;
-    document.getElementById('scoreNum').textContent = score;
-    document.getElementById('pbar').style.width    = `${(qIndex / 5) * 100}%`;
-
-    // Category label
-    const catEl = document.getElementById('qCat');
-    catEl.style.color = CAT_COLORS[q.cat] || '#F0B429';
-    catEl.textContent = `${q.icon} ${q.label}`;
-
-    document.getElementById('qText').textContent = q.q;
-
-    // Shuffle options (display only — doesn't affect daily seed)
-    const indexed = q.opts.map((opt, i) => ({ opt, isCorrect: i === q.ans }));
-    for (let i = indexed.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [indexed[i], indexed[j]] = [indexed[j], indexed[i]];
-    }
-    shuffledOpts = indexed.map(o => o.opt);
-    correctDisp  = indexed.findIndex(o => o.isCorrect);
-
-    // Render option buttons
-    const letters = ['A','B','C','D'];
-    const grid = document.getElementById('opts');
-    grid.innerHTML = '';
-    shuffledOpts.forEach((opt, i) => {
-        const btn = document.createElement('button');
-        btn.className = 'opt';
-        btn.innerHTML = `<span class="opt-letter">${letters[i]}</span><span class="opt-text">${opt}</span>`;
-        btn.dataset.idx = i;
-        btn.addEventListener('click', () => selectAnswer(i, btn));
-        grid.appendChild(btn);
-    });
-
-    // Reset feedback
-    const fb = document.getElementById('feedback');
-    fb.className   = 'feedback';
-    fb.textContent = '';
-
-    const btnNext = document.getElementById('btnNext');
-    btnNext.textContent = qIndex < 4 ? 'Next Question →' : 'See My Results →';
-    btnNext.classList.remove('show');
-}
-
-/* ================================================================
-   ANSWER SELECTION
-================================================================ */
-function selectAnswer(chosen, clickedBtn) {
-    const correct = chosen === correctDisp;
-    if (correct) score++;
-    answerLog.push(correct);
-
-    document.getElementById('scoreNum').textContent = score;
-
-    // Lock all buttons
-    const allBtns = document.querySelectorAll('.opt');
-    allBtns.forEach((btn, i) => {
-        btn.classList.add('locked');
-        btn.style.pointerEvents = 'none';
-        if (i === correctDisp) {
-            btn.classList.add('is-correct');
-        } else if (i === chosen && !correct) {
-            btn.classList.add('is-wrong');
-        } else {
-            btn.classList.add('is-dim');
+    try {
+        const raw   = localStorage.getItem('spotlight_stats');
+        const stats = raw ? JSON.parse(raw) : null;
+        if (stats) {
+            document.getElementById('triviaStreak').textContent = stats.streak ?? '—';
+            document.getElementById('triviaBest').textContent   = stats.best ? `${stats.best}/5` : '—';
         }
-    });
-
-    // Feedback
-    const fb = document.getElementById('feedback');
-    if (correct) {
-        fb.textContent = '✓  Correct! Well done.';
-        fb.className   = 'feedback correct show';
-    } else {
-        fb.textContent = `✗  Not quite — the answer was: ${shuffledOpts[correctDisp]}`;
-        fb.className   = 'feedback wrong show';
+    } catch {
+        // localStorage unavailable — silently skip
     }
-
-    document.getElementById('btnNext').classList.add('show');
-}
-
-/* ================================================================
-   ADVANCE TO NEXT QUESTION OR RESULTS
-================================================================ */
-function advance() {
-    qIndex++;
-    if (qIndex >= 5) {
-        finishGame();
-    } else {
-        renderQuestion();
-    }
-}
-
-/* ================================================================
-   FINISH GAME
-================================================================ */
-function finishGame() {
-    // Persist result
-    saveTodayResult(score, answerLog);
-
-    // Update stats
-    const stats   = getStats();
-    const todayDs = new Date().toDateString();
-    const yestDs  = (() => { const y = new Date(); y.setDate(y.getDate()-1); return y.toDateString(); })();
-
-    if (stats.lastDate === yestDs) {
-        stats.streak += 1;
-    } else if (stats.lastDate !== todayDs) {
-        stats.streak = 1;
-    }
-    stats.best   = Math.max(stats.best, score);
-    stats.played += 1;
-    stats.lastDate = todayDs;
-    saveStats(stats);
-
-    // Populate results screen
-    document.getElementById('rScore').textContent  = score;
-    document.getElementById('rStreak').textContent = stats.streak;
-    document.getElementById('rBest').textContent   = `${stats.best}/5`;
-    document.getElementById('rPlayed').textContent = stats.played;
-
-    const MSGS = [
-        '"Even legends have off days."',
-        '"Keep watching — knowledge is coming."',
-        '"You know a little something about something."',
-        '"Not bad! A true pop culture fan in the making."',
-        '"You\'re practically a celebrity yourself."',
-        '"A perfect score — you ARE the headline. ★"',
-    ];
-    document.getElementById('rMsg').textContent   = MSGS[score];
-    document.getElementById('rEmojis').textContent = answerLog.map(a => a ? '🟡' : '⬛').join('  ');
-
-    document.getElementById('bottomAd').style.display = 'flex';
-    showScreen('scr-results');
-}
-
-/* ================================================================
-   ALREADY PLAYED SCREEN
-================================================================ */
-function showPlayedScreen(result) {
-    document.getElementById('playedEmojis').textContent  = result.answers.map(a => a ? '🟡' : '⬛').join('  ');
-    document.getElementById('playedScoreNum').textContent = `${result.score}/5`;
-    showScreen('scr-played');
-}
-
-/* ================================================================
-   SHARE
-================================================================ */
-function share(source) {
-    const result = getTodayResult() || { score, answers: answerLog };
-    const d      = new Date();
-    const dateStr = d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
-    const emojis  = result.answers.map(a => a ? '🟡' : '⬛').join('');
-    const text    = `SPOTLIGHT ✦ ${dateStr}\n${result.score}/5\n${emojis}\n\nDaily Pop Culture Trivia\nspotlight-trivia.com`;
-
-    navigator.clipboard.writeText(text).then(() => {
-        const msgId = source === 'results' ? 'copiedResults' : 'copiedPlayed';
-        const el    = document.getElementById(msgId);
-        el.textContent = '✓  Copied to clipboard!';
-        el.classList.add('show');
-        setTimeout(() => el.classList.remove('show'), 2800);
-    }).catch(() => {
-        alert(text);
-    });
-}
-
-/* ================================================================
-   COUNTDOWN TO MIDNIGHT
-================================================================ */
-function tickCountdown() {
-    const now      = new Date();
-    const midnight = new Date();
-    midnight.setHours(24, 0, 0, 0);
-    const diff = midnight - now;
-    const h = Math.floor(diff / 3600000);
-    const m = Math.floor((diff % 3600000) / 60000);
-    const s = Math.floor((diff % 60000) / 1000);
-    const str = `${h}h ${m}m ${s}s`;
-    ['cdResults','cdPlayed'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = str;
-    });
-}
-
-/* ================================================================
-   START
-================================================================ */
-init();
+}());
 </script>
 </body>
 </html>

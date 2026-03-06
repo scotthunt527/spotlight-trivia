@@ -1,0 +1,170 @@
+/* ============================================================
+   DESIGN SYSTEM — Hollywood Awards Night
+   Shared across all SPOTLIGHT pages and games.
+============================================================ */
+:root {
+    --bg:         #07080F;
+    --surface:    #0D0F1E;
+    --surface-2:  #131629;
+    --border:     rgba(240,180,41,0.14);
+    --border-dim: rgba(255,255,255,0.06);
+    --gold:       #F0B429;
+    --gold-light: #FFD166;
+    --gold-glow:  rgba(240,180,41,0.18);
+    --cream:      #F0E8D5;
+    --muted:      #5E5E78;
+    --muted-mid:  #8787A0;
+    --correct:    #06D6A0;
+    --correct-bg: rgba(6,214,160,0.09);
+    --wrong:      #EF4565;
+    --wrong-bg:   rgba(239,69,101,0.09);
+    --cat-movie:  #F0B429;
+    --cat-tv:     #A78BFA;
+    --cat-music:  #34D399;
+    --cat-celeb:  #F472B6;
+    --cat-pop:    #60A5FA;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Ambient star field */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.28) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 8%,  rgba(255,255,255,.18) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 62%, rgba(255,255,255,.14) 0%, transparent 100%),
+        radial-gradient(2px 2px at 38% 82%, rgba(240,180,41,.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 92% 47%, rgba(255,255,255,.18) 0%, transparent 100%),
+        radial-gradient(1px 1px at 7%  73%, rgba(255,255,255,.12) 0%, transparent 100%),
+        radial-gradient(1px 1px at 68% 22%, rgba(255,255,255,.10) 0%, transparent 100%),
+        radial-gradient(2px 2px at 29% 44%, rgba(240,180,41,.09) 0%, transparent 100%),
+        radial-gradient(1px 1px at 47% 5%,  rgba(255,255,255,.20) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 90%, rgba(167,139,250,.10) 0%, transparent 100%);
+    z-index: 0;
+}
+
+/* Spotlight glow from top */
+body::after {
+    content: '';
+    position: fixed;
+    top: -280px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(ellipse at center, rgba(240,180,41,.055) 0%, transparent 68%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* ============================================================
+   LAYOUT
+============================================================ */
+.wrap {
+    width: 100%;
+    max-width: 660px;
+    padding: 0 18px;
+    position: relative;
+    z-index: 1;
+}
+
+/* ============================================================
+   AD UNITS
+   Replace .ad-placeholder divs with your Google AdSense tags
+============================================================ */
+.ad-zone {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+.ad-zone-top    { padding: 14px 18px 0; }
+.ad-zone-bottom { padding: 6px 18px 28px; }
+
+.ad-placeholder {
+    background: var(--surface);
+    border: 1px dashed rgba(255,255,255,.07);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+.ad-leaderboard { width:100%; max-width:728px; height:90px; }
+.ad-rect        { width:300px; height:250px; }
+
+/* ============================================================
+   HEADER
+============================================================ */
+.site-header {
+    padding: 22px 0 0;
+    text-align: center;
+}
+.logo {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .38em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+.logo-dot { font-size: 8px; }
+.header-date {
+    font-size: 11px;
+    color: var(--muted-mid);
+    letter-spacing: .10em;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+/* ============================================================
+   SHARED DIVIDER
+============================================================ */
+.rule {
+    width: 36px;
+    height: 2px;
+    background: var(--gold);
+    margin: 24px auto;
+    border-radius: 2px;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+.site-footer {
+    padding: 22px 0 28px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .05em;
+    position: relative;
+    z-index: 1;
+}
+.site-footer a { color: var(--muted-mid); text-decoration: none; }
+.site-footer a:hover { color: var(--gold); }

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPOTLIGHT — Daily Pop Culture Trivia</title>
+    <meta name="description" content="Test your pop culture knowledge with SPOTLIGHT — a fresh daily trivia quiz covering movies, TV, music, and celebrities.">
+    <meta property="og:title" content="SPOTLIGHT — Daily Pop Culture Trivia">
+    <meta property="og:description" content="5 new questions every day. How well do you know pop culture?">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/trivia.css">
+</head>
+<body>
+
+<!-- ================================================================
+     TOP LEADERBOARD AD
+     Replace the div.ad-placeholder with your Google AdSense code:
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+     <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
+     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+================================================================ -->
+<div class="ad-zone ad-zone-top">
+    <div class="ad-placeholder ad-leaderboard">Advertisement</div>
+</div>
+
+<!-- SITE HEADER -->
+<div class="wrap">
+    <header class="site-header">
+        <a href="../" class="logo">
+            <span class="logo-dot">✦</span>
+            SPOTLIGHT
+            <span class="logo-dot">✦</span>
+        </a>
+        <p class="header-date" id="headerDate"></p>
+    </header>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="wrap">
+
+    <!-- ── SPLASH ── -->
+    <div class="screen active" id="scr-splash">
+        <div class="card splash-card">
+            <div class="splash-eyebrow">✦ Daily Trivia ✦</div>
+            <div class="splash-title">SPOT<em>LIGHT</em></div>
+            <p class="splash-tagline">5 questions. Every day. All pop culture.</p>
+            <div class="rule"></div>
+            <div class="splash-stats">
+                <div>
+                    <div class="sstat-val" id="splashStreak">0</div>
+                    <div class="sstat-lbl">🔥 Streak</div>
+                </div>
+                <div class="vr"></div>
+                <div>
+                    <div class="sstat-val">5</div>
+                    <div class="sstat-lbl">Questions</div>
+                </div>
+                <div class="vr"></div>
+                <div>
+                    <div class="sstat-val" id="splashBest">—</div>
+                    <div class="sstat-lbl">🏆 Best</div>
+                </div>
+            </div>
+            <button class="btn-play" id="btnPlay">★ &nbsp;Play Today's Quiz</button>
+            <div class="splash-cats">
+                <span class="cpill movies">🎬 Movies</span>
+                <span class="cpill tv">📺 TV</span>
+                <span class="cpill music">🎵 Music</span>
+                <span class="cpill celeb">⭐ Celebrity</span>
+                <span class="cpill pop">🌟 Pop Culture</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ── ALREADY PLAYED ── -->
+    <div class="screen" id="scr-played">
+        <div class="card played-card">
+            <div class="played-icon">🎬</div>
+            <div class="played-title">Already played today!</div>
+            <p class="played-sub">You've completed today's SPOTLIGHT quiz.<br>New questions drop every day at midnight.</p>
+            <div class="emoji-row" id="playedEmojis"></div>
+            <p class="played-score-note">Today's score: <strong id="playedScoreNum"></strong></p>
+            <button class="btn-share" id="btnSharePlayed">📋 &nbsp;Share My Score</button>
+            <p class="copied-msg" id="copiedPlayed"></p>
+            <p class="next-quiz-note">Next quiz in: <span class="countdown" id="cdPlayed"></span></p>
+        </div>
+    </div>
+
+    <!-- ── GAME ── -->
+    <div class="screen" id="scr-game">
+        <div class="game-meta">
+            <p class="game-progress-lbl">Question <strong id="qNum">1</strong> of 5</p>
+            <p class="game-score-lbl">Score: <span id="scoreNum">0</span></p>
+        </div>
+        <div class="pbar-track"><div class="pbar-fill" id="pbar"></div></div>
+
+        <div class="card q-card">
+            <div class="q-cat"  id="qCat"></div>
+            <div class="q-text" id="qText"></div>
+        </div>
+
+        <div class="opts" id="opts"></div>
+        <div class="feedback" id="feedback"></div>
+        <button class="btn-next" id="btnNext"></button>
+    </div>
+
+    <!-- ── RESULTS ── -->
+    <div class="screen" id="scr-results">
+        <div class="card results-card">
+            <p class="results-eyebrow">Today's Result</p>
+            <div class="results-score" id="rScore"></div>
+            <p class="results-of">out of 5 correct</p>
+            <p class="results-msg" id="rMsg"></p>
+            <div class="emoji-row" id="rEmojis"></div>
+            <hr class="results-hr">
+            <div class="r-stats">
+                <div>
+                    <div class="rstat-val" id="rStreak"></div>
+                    <div class="rstat-lbl">🔥 Streak</div>
+                </div>
+                <div class="vr"></div>
+                <div>
+                    <div class="rstat-val" id="rBest"></div>
+                    <div class="rstat-lbl">🏆 Best</div>
+                </div>
+                <div class="vr"></div>
+                <div>
+                    <div class="rstat-val" id="rPlayed"></div>
+                    <div class="rstat-lbl">📅 Played</div>
+                </div>
+            </div>
+            <button class="btn-share" id="btnShareResults">📋 &nbsp;Share My Score</button>
+            <p class="copied-msg" id="copiedResults"></p>
+            <p class="next-quiz-note">New quiz tomorrow · <span class="countdown" id="cdResults"></span></p>
+        </div>
+    </div>
+
+</div><!-- /wrap -->
+
+<!-- ================================================================
+     BOTTOM AD (medium rectangle 300×250) — shown after results
+================================================================ -->
+<div class="ad-zone ad-zone-bottom" id="bottomAd" style="display:none">
+    <div class="ad-placeholder ad-rect">Advertisement (300×250)</div>
+</div>
+
+<footer class="site-footer">
+    SPOTLIGHT · Daily Pop Culture Trivia · New quiz every midnight
+</footer>
+
+<script src="../js/shared.js"></script>
+<script src="../js/trivia.js"></script>
+<script>
+    // Wire up buttons via addEventListener (no inline handlers)
+    document.getElementById('btnPlay').addEventListener('click', startGame);
+    document.getElementById('btnNext').addEventListener('click', advance);
+    document.getElementById('btnShareResults').addEventListener('click', () => share('results'));
+    document.getElementById('btnSharePlayed').addEventListener('click', () => share('played'));
+</script>
+</body>
+</html>
