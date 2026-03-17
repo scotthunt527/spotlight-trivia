@@ -83,8 +83,8 @@ const BANK = [
       opts:['House Lannister','House Baratheon','House Targaryen','House Stark'], ans:3 },
 
     { cat:'tv', icon:'📺', label:'TV Shows',
-      q:'Tony Stark\'s AI butler in the Iron Man films goes by what name?',
-      opts:['HAL','ARIA','WALL-E','JARVIS'], ans:3 },
+      q:'Which HBO anthology series follows a different group of guests at a luxury tropical resort each season?',
+      opts:['Big Little Lies','Nine Perfect Strangers','The Resort','The White Lotus'], ans:3 },
 
     /* ── MUSIC ── */
     { cat:'music', icon:'🎵', label:'Music',
@@ -149,8 +149,8 @@ const BANK = [
       opts:['Chris Evans','Chris Pratt','Chris Pine','Chris Hemsworth'], ans:3 },
 
     { cat:'celeb', icon:'⭐', label:'Celebrity',
-      q:'Lady Gaga\'s famous fan nickname for herself is:',
-      opts:['Little Monsters (she calls herself Mother Monster)','Queen of Monsters','The Haus Head','Little Gaga'], ans:3 },
+      q:'What does Lady Gaga call her devoted fanbase?',
+      opts:['Gaga Gang','The Haus','Born This Way Believers','Little Monsters'], ans:3 },
 
     { cat:'celeb', icon:'⭐', label:'Celebrity',
       q:'As of 2024, who is the most-followed individual on Instagram?',
