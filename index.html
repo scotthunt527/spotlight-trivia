@@ -289,11 +289,132 @@
             </div>
         </div>
 
-        <!-- Coming soon placeholder -->
-        <div class="coming-soon-card">
-            <strong>More games coming soon</strong>
-            Check back — new game modes drop regularly.
-        </div>
+    </div>
+
+    <p class="hub-section-label">Category Challenges</p>
+    <p style="font-size:13px;color:var(--muted-mid);margin:-8px 0 20px;line-height:1.6;">Go deep on the category you love most. 5 daily questions — same for everyone.</p>
+
+    <div class="game-grid">
+
+        <!-- Movies -->
+        <a href="category-quiz/?cat=movies" class="game-card">
+            <div class="game-card-icon">🎬</div>
+            <div class="game-card-body">
+                <span class="game-card-badge" style="color:var(--cat-movie);background:rgba(240,180,41,.10);border-color:rgba(240,180,41,.22);">Daily · 5 Questions</span>
+                <div class="game-card-title">Movies</div>
+                <p class="game-card-desc">Blockbusters, classics, directors, and box office legends.</p>
+                <div class="game-card-footer">
+                    <div class="game-card-stats" id="moviesStats">
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="moviesStreak">—</div>
+                            <div class="gc-stat-lbl">🔥 Streak</div>
+                        </div>
+                        <div class="gc-stat-divider"></div>
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="moviesBest">—</div>
+                            <div class="gc-stat-lbl">🏆 Best</div>
+                        </div>
+                    </div>
+                    <span class="game-card-play" style="background:var(--cat-movie);">★ &nbsp;Play</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- TV Shows -->
+        <a href="category-quiz/?cat=tv" class="game-card">
+            <div class="game-card-icon">📺</div>
+            <div class="game-card-body">
+                <span class="game-card-badge" style="color:var(--cat-tv);background:rgba(167,139,250,.10);border-color:rgba(167,139,250,.22);">Daily · 5 Questions</span>
+                <div class="game-card-title">TV Shows</div>
+                <p class="game-card-desc">Streaming hits, iconic series, beloved characters, and more.</p>
+                <div class="game-card-footer">
+                    <div class="game-card-stats">
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="tvStreak">—</div>
+                            <div class="gc-stat-lbl">🔥 Streak</div>
+                        </div>
+                        <div class="gc-stat-divider"></div>
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="tvBest">—</div>
+                            <div class="gc-stat-lbl">🏆 Best</div>
+                        </div>
+                    </div>
+                    <span class="game-card-play" style="background:var(--cat-tv);">★ &nbsp;Play</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Music -->
+        <a href="category-quiz/?cat=music" class="game-card">
+            <div class="game-card-icon">🎵</div>
+            <div class="game-card-body">
+                <span class="game-card-badge" style="color:var(--cat-music);background:rgba(52,211,153,.10);border-color:rgba(52,211,153,.22);">Daily · 5 Questions</span>
+                <div class="game-card-title">Music</div>
+                <p class="game-card-desc">Artists, albums, hits, and music history from every era.</p>
+                <div class="game-card-footer">
+                    <div class="game-card-stats">
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="musicStreak">—</div>
+                            <div class="gc-stat-lbl">🔥 Streak</div>
+                        </div>
+                        <div class="gc-stat-divider"></div>
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="musicBest">—</div>
+                            <div class="gc-stat-lbl">🏆 Best</div>
+                        </div>
+                    </div>
+                    <span class="game-card-play" style="background:var(--cat-music);color:#07080F;">★ &nbsp;Play</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Celebrity -->
+        <a href="category-quiz/?cat=celeb" class="game-card">
+            <div class="game-card-icon">⭐</div>
+            <div class="game-card-body">
+                <span class="game-card-badge" style="color:var(--cat-celeb);background:rgba(244,114,182,.10);border-color:rgba(244,114,182,.22);">Daily · 5 Questions</span>
+                <div class="game-card-title">Celebrity</div>
+                <p class="game-card-desc">Hollywood's biggest stars, iconic moments, and famous faces.</p>
+                <div class="game-card-footer">
+                    <div class="game-card-stats">
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="celebStreak">—</div>
+                            <div class="gc-stat-lbl">🔥 Streak</div>
+                        </div>
+                        <div class="gc-stat-divider"></div>
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="celebBest">—</div>
+                            <div class="gc-stat-lbl">🏆 Best</div>
+                        </div>
+                    </div>
+                    <span class="game-card-play" style="background:var(--cat-celeb);">★ &nbsp;Play</span>
+                </div>
+            </div>
+        </a>
+
+        <!-- Pop Culture -->
+        <a href="category-quiz/?cat=pop" class="game-card">
+            <div class="game-card-icon">🌟</div>
+            <div class="game-card-body">
+                <span class="game-card-badge" style="color:var(--cat-pop);background:rgba(96,165,250,.10);border-color:rgba(96,165,250,.22);">Daily · 5 Questions</span>
+                <div class="game-card-title">Pop Culture</div>
+                <p class="game-card-desc">Viral moments, trends, memes, and the zeitgeist of our era.</p>
+                <div class="game-card-footer">
+                    <div class="game-card-stats">
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="popStreak">—</div>
+                            <div class="gc-stat-lbl">🔥 Streak</div>
+                        </div>
+                        <div class="gc-stat-divider"></div>
+                        <div class="gc-stat">
+                            <div class="gc-stat-val" id="popBest">—</div>
+                            <div class="gc-stat-lbl">🏆 Best</div>
+                        </div>
+                    </div>
+                    <span class="game-card-play" style="background:var(--cat-pop);color:#07080F;">★ &nbsp;Play</span>
+                </div>
+            </div>
+        </a>
 
     </div>
 
@@ -322,6 +443,19 @@
     } catch {
         // localStorage unavailable — silently skip
     }
+
+    // Load per-category stats
+    const cats = ['movies', 'tv', 'music', 'celeb', 'pop'];
+    cats.forEach(cat => {
+        try {
+            const catRaw   = localStorage.getItem(`spotlight_cat_${cat}_stats`);
+            const catStats = catRaw ? JSON.parse(catRaw) : null;
+            const streakEl = document.getElementById(`${cat}Streak`);
+            const bestEl   = document.getElementById(`${cat}Best`);
+            if (catStats && streakEl) streakEl.textContent = catStats.streak ?? '—';
+            if (catStats && bestEl)   bestEl.textContent   = catStats.best ? `${catStats.best}/5` : '—';
+        } catch { /* silently skip */ }
+    });
 }());
 </script>
 </body>

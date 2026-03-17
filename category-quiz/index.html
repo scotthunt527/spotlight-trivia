@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPOTLIGHT — Daily Pop Culture Trivia</title>
-    <meta name="description" content="Test your pop culture knowledge with SPOTLIGHT — a fresh daily trivia quiz covering movies, TV, music, and celebrities.">
-    <meta property="og:title" content="SPOTLIGHT — Daily Pop Culture Trivia">
-    <meta property="og:description" content="5 new questions every day. How well do you know pop culture?">
+    <title>SPOTLIGHT — Category Quiz</title>
+    <meta name="description" content="Test your knowledge in a specific pop culture category with SPOTLIGHT's daily category quiz.">
+    <meta property="og:title" content="SPOTLIGHT — Daily Category Quiz">
+    <meta property="og:description" content="5 category-specific daily trivia questions — same for everyone today.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/base.css">
@@ -14,8 +14,6 @@
 
     <!-- ================================================================
          GOOGLE ANALYTICS 4
-         Replace G-Z7NW66BQ69 with your Measurement ID from
-         analytics.google.com → Admin → Data Streams → your stream
     ================================================================ -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z7NW66BQ69"></script>
     <script>
@@ -24,15 +22,36 @@
         gtag('js', new Date());
         gtag('config', 'G-Z7NW66BQ69');
     </script>
+
+    <style>
+        /* Override gold accents with the per-category colour (--cat-accent set by JS) */
+        .splash-eyebrow { color: var(--cat-accent, var(--gold)); }
+        .sstat-val      { color: var(--cat-accent, var(--gold)); }
+        .btn-play       { background: var(--cat-accent, var(--gold)); }
+        .btn-play:hover {
+            background: var(--cat-accent, var(--gold));
+            filter: brightness(1.15);
+            box-shadow: 0 10px 28px rgba(0, 0, 0, .22);
+        }
+        .pbar-fill { background: var(--cat-accent, var(--gold)); }
+
+        /* Category splash icon and title */
+        .cat-splash-icon {
+            font-size: 56px;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        /* Override the trivia.css splash-title sizing for a category name */
+        .splash-title {
+            font-size: clamp(36px, 8vw, 58px) !important;
+            color: var(--cat-accent, var(--gold)) !important;
+        }
+    </style>
 </head>
 <body>
 
 <!-- ================================================================
      TOP LEADERBOARD AD
-     Replace the div.ad-placeholder with your Google AdSense code:
-     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
-     <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="XXXXXXXXXX"></ins>
-     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 ================================================================ -->
 <div class="ad-zone ad-zone-top">
     <div class="ad-placeholder ad-leaderboard">Advertisement</div>
@@ -56,9 +75,10 @@
     <!-- ── SPLASH ── -->
     <div class="screen active" id="scr-splash">
         <div class="card splash-card">
-            <div class="splash-eyebrow">✦ Daily Trivia ✦</div>
-            <div class="splash-title">SPOT<em>LIGHT</em></div>
-            <p class="splash-tagline">5 questions. Every day. All pop culture.</p>
+            <div class="splash-eyebrow">✦ Daily Category Quiz ✦</div>
+            <div class="cat-splash-icon" id="catIcon">🎬</div>
+            <div class="splash-title" id="catLabel">Movies</div>
+            <p class="splash-tagline">5 questions. Same for everyone today.</p>
             <div class="rule"></div>
             <div class="splash-stats">
                 <div>
@@ -77,22 +97,15 @@
                 </div>
             </div>
             <button class="btn-play" id="btnPlay">★ &nbsp;Play Today's Quiz</button>
-            <div class="splash-cats">
-                <span class="cpill movies">🎬 Movies</span>
-                <span class="cpill tv">📺 TV</span>
-                <span class="cpill music">🎵 Music</span>
-                <span class="cpill celeb">⭐ Celebrity</span>
-                <span class="cpill pop">🌟 Pop Culture</span>
-            </div>
         </div>
     </div>
 
     <!-- ── ALREADY PLAYED ── -->
     <div class="screen" id="scr-played">
         <div class="card played-card">
-            <div class="played-icon">🎬</div>
+            <div class="played-icon" id="playedIcon">🎬</div>
             <div class="played-title">Already played today!</div>
-            <p class="played-sub">You've completed today's SPOTLIGHT quiz.<br>New questions drop every day at midnight.</p>
+            <p class="played-sub">You've completed today's category quiz.<br>New questions drop every day at midnight.</p>
             <div class="emoji-row" id="playedEmojis"></div>
             <p class="played-score-note">Today's score: <strong id="playedScoreNum"></strong></p>
             <button class="btn-share" id="btnSharePlayed">📋 &nbsp;Share My Score</button>
@@ -152,9 +165,6 @@
 
 </div><!-- /wrap -->
 
-<!-- ================================================================
-     BOTTOM AD (medium rectangle 300×250) — shown after results
-================================================================ -->
 <div class="ad-zone ad-zone-bottom" id="bottomAd" style="display:none">
     <div class="ad-placeholder ad-rect">Advertisement (300×250)</div>
 </div>
@@ -165,9 +175,8 @@
 
 <script src="../js/shared.js"></script>
 <script src="../js/bank.js"></script>
-<script src="../js/trivia.js"></script>
+<script src="../js/category-quiz.js"></script>
 <script>
-    // Wire up buttons via addEventListener (no inline handlers)
     document.getElementById('btnPlay').addEventListener('click', startGame);
     document.getElementById('btnNext').addEventListener('click', advance);
     document.getElementById('btnShareResults').addEventListener('click', () => share('results'));

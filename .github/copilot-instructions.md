@@ -10,26 +10,34 @@ The game serves 5 questions per day, seeded by the calendar date so every visito
 
 ```
 spotlight-trivia/
-├── index.html          # Hub / game-picker page
+├── index.html              # Hub / game-picker page
 ├── trivia/
-│   └── index.html      # Daily trivia game
+│   └── index.html          # Daily mixed trivia game
+├── category-quiz/
+│   └── index.html          # Per-category daily quiz (reads ?cat= URL param)
 ├── css/
-│   ├── base.css        # Shared: design tokens, reset, layout, header, footer
-│   └── trivia.css      # Trivia-specific: screens, cards, buttons, game UI
+│   ├── base.css            # Shared: design tokens, reset, layout, header, footer
+│   └── trivia.css          # Game UI: screens, cards, buttons (shared by trivia & category-quiz)
 └── js/
-    ├── shared.js       # seededRNG(), dateSeed() — reusable across games
-    └── trivia.js       # BANK, getDailyQuestions(), full game logic
+    ├── shared.js           # seededRNG(), dateSeed() — reusable across all games
+    ├── bank.js             # BANK array — 50 questions, loaded by both game engines
+    ├── trivia.js           # getDailyQuestions(), full daily-mix game logic
+    └── category-quiz.js    # getCatDailyQuestions(), category game logic
 ```
 
 | Concern | Location |
 |---|---|
 | Hub markup | `index.html` |
-| Game markup | `trivia/index.html` |
+| Daily trivia game | `trivia/index.html` |
+| Category quiz (all 5 categories) | `category-quiz/index.html?cat=movies` |
 | Shared styles | `css/base.css` |
-| Trivia styles | `css/trivia.css` |
+| Game UI styles | `css/trivia.css` |
 | Shared JS utilities | `js/shared.js` |
-| Question bank & game logic | `js/trivia.js` |
-| Persistence | `localStorage` — keys `spotlight_stats` and `spotlight_YYYY_M_D` |
+| Question bank (50 Qs) | `js/bank.js` |
+| Daily-mix game logic | `js/trivia.js` |
+| Category quiz logic | `js/category-quiz.js` |
+| Daily trivia persistence | `localStorage` — `spotlight_stats` + `spotlight_YYYY_M_D` |
+| Category quiz persistence | `localStorage` — `spotlight_cat_{cat}_stats` + `spotlight_cat_{cat}_YYYY_M_D` |
 | Ads | `.ad-placeholder` divs (swap for real AdSense tags when live) |
 
 ## Design System
@@ -101,7 +109,7 @@ Ad placeholders are marked with comments in `index.html`. When replacing with re
 1. Create `<game-name>/index.html` — the game page.
 2. Add game-specific styles to a new `css/<game-name>.css` file.
 3. Add game logic to a new `js/<game-name>.js` file.
-4. Load `css/base.css` and `js/shared.js` from the game page (paths relative: `../css/base.css`).
+4. Load `css/base.css`, `js/shared.js`, and `js/bank.js` from the game page (paths relative: `../css/base.css`).
 5. Add a new `.game-card` entry to `index.html` linking to the new game directory.
 
 ## Deployment
