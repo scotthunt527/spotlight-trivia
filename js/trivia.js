@@ -457,15 +457,33 @@ function share(source) {
     const emojis  = result.answers.map(a => a ? '🟡' : '⬛').join('');
     const text    = `SPOTLIGHT ✦ ${dateStr}\n${result.score}/5\n${emojis}\n\nDaily Pop Culture Trivia\nspotlight-trivia.com/trivia/`;
 
-    navigator.clipboard.writeText(text).then(() => {
+    const showCopied = () => {
         const msgId = source === 'results' ? 'copiedResults' : 'copiedPlayed';
         const el    = document.getElementById(msgId);
         el.textContent = '✓  Copied to clipboard!';
         el.classList.add('show');
         setTimeout(() => el.classList.remove('show'), 2800);
-    }).catch(() => {
-        alert(text);
-    });
+    };
+
+    if (navigator.clipboard && window.isSecureContext) {
+        // Modern clipboard API (HTTPS / localhost)
+        navigator.clipboard.writeText(text).then(showCopied).catch(() => alert(text));
+    } else {
+        // Fallback for file:// or plain HTTP (e.g. Live Server over non-localhost)
+        try {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.cssText = 'position:fixed;opacity:0;pointer-events:none';
+            document.body.appendChild(ta);
+            ta.focus();
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showCopied();
+        } catch {
+            alert(text);
+        }
+    }
 }
 
 /* ================================================================
